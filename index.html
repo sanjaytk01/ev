@@ -1,230 +1,281 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Homepage</title>
+
+  <!-- icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <mete charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE-edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style32.css">
+
   <style>
-  .dropbtn {
-    width: 100px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid #fff;
-    margin-top: 0px;
-    color: #fff;
-    font-size: 15px;
-    border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-  }
+    /* ---------- reset ---------- */
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+    /* ---------- hero + video ---------- */
+    .hero{
+      width:100%;
+      height:100vh;
+      position:relative;
+      padding:0 5%;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      overflow:hidden;
+      background: linear-gradient(rgba(12,3,51,0.6), rgba(12,3,51,0.6));
+    }
+    .back-video{
+      position:absolute;
+      inset:0; /* top/right/bottom/left = 0 */
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-1;
+    }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
+    /* ---------- NAVBAR (clean flex layout) ---------- */
+    .menu-bar{
+      position:absolute;       /* positioned inside .hero */
+      top:34px;                /* <-- move menu down: change this value */
+      left:5%;
+      right:5%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      z-index:10;
+      pointer-events:auto;
+    }
 
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
+    /* left area (logo) */
+    .menu-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .menu-left img.logo{
+      width:70px;
+      height:60px;
+      object-fit:contain;
+      cursor:pointer;
+    }
 
-  .dropdown-content a:hover {background-color: #e0e0e0;}
-  .dropdown:hover .dropdown-content {display: block;}
-  .dropdown:hover .dropbtn {background-color: #1588ff ;}
+    /* center area (links) */
+    .menu-center{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .menu-center .nav-item{
+      position:relative;
+    }
+    .dropbtn{
+      height:40px;
+      background:transparent;
+      border:2px solid #fff;
+      color:#fff;
+      padding:0 12px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      font-size:15px;
+      border-radius:4px;
+    }
+    .dropbtn:hover{ background: rgba(255,255,255,0.06); }
+
+    /* dropdown content */
+    .dropdown-content{
+      display:none;
+      position:absolute;
+      top:48px;
+      left:0;
+      background:#111827;
+      min-width:180px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.4);
+      border-radius:6px;
+      overflow:hidden;
+    }
+    .dropdown-content a{
+      display:block;
+      padding:10px 12px;
+      color:#fff;
+      text-decoration:none;
+      font-size:14px;
+    }
+    .dropdown-content a:hover{ background: rgba(255,255,255,0.04); color:#00ccff; }
+
+    .nav-item:hover .dropdown-content{ display:block; }
+
+    /* right area (search) */
+    .menu-right{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .search{
+      display:flex;
+      align-items:center;
+      gap:0;
+    }
+    .srch{
+      width:220px;
+      height:40px;
+      background:transparent;
+      border:2px solid #fff;
+      color:#fff;
+      padding:0 10px;
+      font-size:15px;
+      border-top-left-radius:5px;
+      border-bottom-left-radius:5px;
+      outline:none;
+    }
+    .btn{
+      width:100px;
+      height:40px;
+      background:transparent;
+      border:2px solid #fff;
+      color:#fff;
+      font-size:15px;
+      border-top-right-radius:5px;
+      border-bottom-right-radius:5px;
+      cursor:pointer;
+    }
+    .btn:hover{ background:#1588ff; border-color:#1588ff; }
+
+    /* ---------- content in hero ---------- */
+    .content{
+      max-width:1200px;
+      color:#fff;
+      position:relative;
+      margin-left:18px;
+      z-index:5;
+    }
+    .content h1{
+      font-family:fantasy;
+      font-size:100px;
+      letter-spacing:6px;
+      text-shadow:5px 5px 0 rgba(0,0,0,0.6);
+      margin-bottom:16px;
+    }
+    .content p{
+      max-width:700px;
+      line-height:1.6;
+      font-size:16px;
+      margin-bottom:18px;
+      color:#e6eef9;
+    }
+    .cn{
+      display:inline-block;
+      width:160px;
+      height:40px;
+      border:2px solid #fff;
+      background:transparent;
+      color:#fff;
+      text-align:center;
+      line-height:36px;
+      border-radius:4px;
+      text-decoration:none;
+    }
+    .cn:hover{ background:#1588ff; color:#fff; border-color:#1588ff; }
+
+    /* small screens */
+    @media (max-width:900px){
+      .content h1{ font-size:56px; }
+      .menu-bar{ top:18px; left:3%; right:3%; }
+      .srch{ width:140px; }
+    }
   </style>
-  </head>
-  </head>
-  <body>
-    <div class="hero">
-       <video autoplay  loop muted plays-inline class="back-video">
-        <source src="intro1.mp4" type="video/mp4">
-      </video>
+</head>
+<body>
+  <div class="hero">
+    <video autoplay loop muted playsinline class="back-video">
+      <source src="intro1.mp4" type="video/mp4">
+    </video>
 
-      <div class="menu-bar">
-    <u1>
-
-        <img class="img" src="icon4.png">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-    <li><a href="index.html"><div class="dropdown" ">
-      <button class="dropbtn"><i class="fa-solid fa-house"></i> Home</button>
-
-    </div></a></li>  </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-      <ul style="list-style-type:none;">
-            <li class="hover-me"><a href="#"><div class="dropdown" style="float:right;">
-      <button class="dropbtn"><i class="fa-solid fa-align-justify"></i> History</button>
-      <div class="dropdown-content">
-        <a href="1820.html">1820s - 1890s</a>
-        <a href="1890.html">1890s - 1910s</a>
-        <a href="1920.html">1920s - 1950s</a>
-        <a href="1960.html">1960s - 1990s</a>
-        <a href="2000.html">2000s - 2010s</a>
-        <a href="2020.html">2020s - present </a>
-
+    <!-- NAVBAR -->
+    <nav class="menu-bar" aria-label="Main navigation">
+      <div class="menu-left">
+        <a href="index.html"><img class="logo" src="icon4.png" alt="logo"></a>
       </div>
-    </div> </li> </ul>&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <li class="hover-me"><a href="#"><div class="dropdown" style="float:right;">
-      <button class="dropbtn"><i class="fa-solid fa-car"></i> Vehicles</button>
-      <div class="dropdown-content">
-        <a href="bicycle.html"><i class="fa-solid fa-bicycle"></i> &nbsp;E-Bicycle</a>
-        <a href="motorcycle.html"><i class="fa-solid fa-motorcycle"></i>&nbsp; E-Motorcyle</a>
-        <a href="auto.html"><i class="fa-solid fa-caravan"></i> &nbsp;E-Auto</a>
-          <a href="car.html"><i class="fa-solid fa-car"></i> &nbsp; E-Car</a>
-            <a href="bus.html"><i class="fa-solid fa-bus"></i> &nbsp; E-Bus</a>
-              <a href="truck.html"><i class="fa-solid fa-truck"></i>&nbsp; E-Truck</a>
-                <a href="locomotive.html"><i class="fa-solid fa-train"></i> &nbsp; E-Locomotive</a>
+      <div class="menu-center">
+        <div class="nav-item">
+          <a href="index.html"><button class="dropbtn"><i class="fa-solid fa-house"></i> Home</button></a>
+        </div>
+
+        <div class="nav-item">
+          <button class="dropbtn"><i class="fa-solid fa-align-justify"></i> History</button>
+          <div class="dropdown-content">
+            <a href="1820.html">1820s - 1890s</a>
+            <a href="1890.html">1890s - 1910s</a>
+            <a href="1920.html">1920s - 1950s</a>
+            <a href="1960.html">1960s - 1990s</a>
+            <a href="2000.html">2000s - 2010s</a>
+            <a href="2020.html">2020s - present</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <button class="dropbtn"><i class="fa-solid fa-car"></i> Vehicles</button>
+          <div class="dropdown-content">
+            <a href="bicycle.html"><i class="fa-solid fa-bicycle"></i> E-Bicycle</a>
+            <a href="motorcycle.html"><i class="fa-solid fa-motorcycle"></i> E-Motorcycle</a>
+            <a href="auto.html"><i class="fa-solid fa-caravan"></i> E-Auto</a>
+            <a href="car.html"><i class="fa-solid fa-car"></i> E-Car</a>
+            <a href="bus.html"><i class="fa-solid fa-bus"></i> E-Bus</a>
+            <a href="truck.html"><i class="fa-solid fa-truck"></i> E-Truck</a>
+            <a href="locomotive.html"><i class="fa-solid fa-train"></i> E-Locomotive</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="about.html"><button class="dropbtn"><i class="fa-solid fa-user-group"></i> About</button></a>
+        </div>
       </div>
-    </div>
 
+      <div class="menu-right">
+        <div class="search">
+          <input class="srch" type="search" id="search" onchange="openPage()" placeholder="Search here">
+          <button class="btn" onclick="openPage()">Search</button>
+        </div>
+      </div>
+    </nav>
 
-            </li> </ul>
-
-    </ul>
-
-
-    <li><a href="about.html"> <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn"><i class="fa-solid fa-user-group"></i>&nbsp;About</button>
-
-    </div>
-
-    </a>
-    </li> </ul>
-
-
-
-
-
-
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <li>
-      <div class="search">
-             <input class="srch" type="search" id="search" onchange="openPage()" placeholder="Search here">
-             <script>
-             function openPage(){
-                var x = document.getElementById("search").value;
-                if (x === "home"){
-                     window.open("home.html");
-                }
-                if (x === "about"){
-                     window.open("about.html");
-                }
-                if (x === "cycle"){
-                     window.open("bicycle.html");
-                }
-                if (x === "bicycle"){
-                     window.open("bicycle.html");
-                }
-                if (x === "bike"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "motorbike"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "motorcycle"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "car"){
-                     window.open("car.html");
-                }
-                if (x === "auto"){
-                     window.open("auto.html");
-                }
-                if (x === "bus"){
-                     window.open("bus.html");
-                }
-                if (x === "truck"){
-                     window.open("truck.html");
-                }
-                if (x === "locomotive"){
-                     window.open("locomotive.html");
-                }
-                if (x === "train"){
-                     window.open("locomotive.html");
-                }
-                if (x === "electric cycle"){
-                     window.open("bicycle.html");
-                }
-                if (x === "electric bicycle"){
-                     window.open("bicycle.html");
-                }
-                if (x === "electric bike"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "electric motorbike"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "electric motorcycle"){
-                     window.open("motorcycle.html");
-                }
-                if (x === "electric car"){
-                     window.open("car.html");
-                }
-                if (x === "electric auto"){
-                     window.open("auto.html");
-                }
-                if (x === "electric bus"){
-                     window.open("bus.html");
-                }
-                if (x === "electric truck"){
-                     window.open("truck.html");
-                }
-                if (x === "electric locomotive"){
-                     window.open("locomotive.html");
-                }
-                if (x === "electric train"){
-                     window.open("locomotive.html");
-                }
-                if (x === "history"){
-                     window.open("history.html");
-                }
-                if (x === "electric vehicle"){
-                     window.open("intro6.html");
-                }
-             }
-             </script>
-             <a href="#"><button class="btn">Search</button></a>
-             </div></li>
-
-    </u1><div class="animi">
+    <!-- HERO CONTENT -->
     <div class="content">
+      <h1><span style="color:#00bfff">E</span>lectric <span style="color:#00bfff">V</span>ehicles.</h1>
+      <p>An electric vehicle (EV) is one that operates on an electric motor, instead of an internal-combustion engine that generates power by burning a mix of fuel and gases.</p>
+      <a class="cn" href="learn.html">learn more</a>
+    </div>
+  </div>
 
-            <h9 style="color: white;text-shadow:5px 5px 0 black; font-family:fantasy;font-size:100px"><span>E</span>lectric <span>V</span>ehicles.</h9>
-
-            <p class="par">An electric vehicle (EV) is one that operates on an electric
-               motor, instead <br>of an internal-combustion  &nbsp;engine that
-               generates power by burning a &nbsp;mix <br>of fuel and gases.</p>
-
-                <button class="cn"><a href="learn.html">learn more</a></button>
-
-                       &nbsp;
-          </div>   &nbsp;   &nbsp;</div>
-   </div>
-   </body>
-   </html>
+  <script>
+    function openPage(){
+      var x = document.getElementById("search").value.trim().toLowerCase();
+      if(!x) return;
+      const map = {
+        home: "home.html",
+        about: "about.html",
+        bicycle: "bicycle.html",
+        cycle: "bicycle.html",
+        bike: "motorcycle.html",
+        motorcycle: "motorcycle.html",
+        car: "car.html",
+        auto: "auto.html",
+        bus: "bus.html",
+        truck: "truck.html",
+        locomotive: "locomotive.html",
+        train: "locomotive.html",
+        "electric vehicle": "intro6.html",
+        "electric car": "car.html",
+        "electric bicycle": "bicycle.html",
+        "electric bike": "motorcycle.html"
+      };
+      if(map[x]) window.open(map[x], "_self");
+      else alert("No page found for: " + x);
+    }
+  </script>
+</body>
+</html>
