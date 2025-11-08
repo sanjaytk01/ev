@@ -33,7 +33,7 @@
          height: 100%;
     }
  }
- /* .menu-bar
+  .menu-bar
  {
    background: transparent;
    list-style: none;
@@ -53,33 +53,7 @@
    margin: 1px;
    padding: 15px;
    padding-bottom: 200px;
- }*/
- .menu-bar {
-  background: transparent;
-  list-style: none;
-  text-align: left;
-  position: absolute; /* fixes positioning relative to the hero section */
-  top: 40px; /* moves the entire menu down from top */
-  left: 5%;
-  right: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 10;
-}
-
-.menu-bar u1 {
-  display: inline-flex;
-  list-style: none;
-  color: #fff;
-  align-items: center;
-}
-
-.menu-bar u1 li {
-  width: auto;
-  margin: 0 10px;
-  padding: 10px 15px;
-}
+ }
 
  .menu-bar u1 li a
  {
